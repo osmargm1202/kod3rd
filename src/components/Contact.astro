@@ -1,14 +1,40 @@
 ---
 import site from '@/data/site.json';
+
+const phoneNumbers = (site.phone ?? []).map((phone) => ({
+  label: phone,
+  href: `tel:${phone.replace(/\D/g, '')}`
+}));
 ---
 
 <section id="CONTACTO" class="section contact">
   <div class="container">
     <h2 class="section__title animate-slide-up">CONTACTO</h2>
     <div class="contact__content animate-slide-up">
-      <p class="contact__text">Estamos listos para impulsar tu proyecto.</p>
-      <div class="contact__info">
-        <a href={`mailto:${site.email}`} class="contact__link">{site.email}</a>
+      <p class="contact__text">¿Listo para construir el futuro de tu negocio? Contáctanos y cuéntanos sobre tu próximo gran proyecto o cualquier inquietud.</p>
+
+      <div class="contact__grid">
+        <div class="contact__group">
+          <h3 class="contact__group-title">Líneas de contacto</h3>
+          {phoneNumbers.length > 0
+            ? (
+              phoneNumbers.map((number) => (
+                <a href={number.href} class="contact__link">{number.label}</a>
+              ))
+            )
+            : null}
+          <a href={`mailto:${site.email}`} class="contact__link">{site.email}</a>
+        </div>
+
+        <div class="contact__group">
+          <h3 class="contact__group-title">Horario</h3>
+          <p class="contact__text-secondary">{site.schedule.days}<br />{site.schedule.hours}</p>
+        </div>
+
+        <div class="contact__group">
+          <h3 class="contact__group-title">Siguenos</h3>
+          <a href={site.instagram} target="_blank" rel="noopener noreferrer" class="contact__link">Instagram</a>
+        </div>
       </div>
     </div>
   </div>
@@ -28,16 +54,34 @@ import site from '@/data/site.json';
   .contact__text {
     font-family: var(--font-primary);
     font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
-  .contact__info {
-    margin-bottom: 2rem;
+  .contact__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .contact__group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .contact__group-title {
+    font-family: var(--font-alt);
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: rgba(240, 236, 230, 0.8);
+    margin-bottom: 0.3rem;
   }
 
   .contact__link {
     font-family: var(--font-alt);
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: var(--color-accent);
     transition: var(--transition-fast);
@@ -47,5 +91,20 @@ import site from '@/data/site.json';
     text-decoration: underline;
   }
 
+  .contact__text-secondary {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(240, 236, 230, 0.85);
+  }
 
+  @media (max-width: 768px) {
+    .contact__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact__text {
+      margin-bottom: 1.25rem;
+    }
+  }
 </style>

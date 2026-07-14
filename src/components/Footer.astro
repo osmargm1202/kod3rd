@@ -1,16 +1,41 @@
 ---
 import footer from '@/data/footer.json';
+
+const menuItems = footer.menu ?? [];
+const phoneNumbers = (footer.phone ?? []).map((phone) => ({
+  label: phone,
+  href: `tel:${phone.replace(/\D/g, '')}`
+}));
 ---
 
 <footer class="footer">
   <div class="container footer__container">
-    <p class="footer__copyright">{footer.copyright}</p>
-    <div class="footer__links">
-      <a href={`mailto:${footer.email}`} class="footer__link">{footer.email}</a>
+    <div class="footer__about">
+      <p class="footer__description">{footer.description}</p>
       <a href={footer.instagram} target="_blank" rel="noopener noreferrer" class="footer__link">
-        {footer.instagramHandle}
+        Instagram
       </a>
     </div>
+
+    <nav class="footer__nav" aria-label="Explora">
+      <h6 class="footer__nav-title">Explora</h6>
+      <ul class="footer__nav-list">
+        {menuItems.map((item) => (
+          <li><a href={item.href} class="footer__menu-link">{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer__contact">
+      <a href={`mailto:${footer.email}`} class="footer__link">{footer.email}</a>
+      {phoneNumbers.map((phone) => (
+        <a href={phone.href} class="footer__link">{phone.label}</a>
+      ))}
+    </div>
+  </div>
+
+  <div class="footer__copyright-row">
+    <p class="footer__copyright">{footer.copyright}</p>
   </div>
 </footer>
 
@@ -18,16 +43,75 @@ import footer from '@/data/footer.json';
   .footer {
     background: var(--color-primary);
     color: var(--color-text);
-    padding: 2rem 0;
+    padding: 2.5rem 0 1.5rem;
     border-top: 1px solid var(--color-border);
   }
 
   .footer__container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .footer__about {
+    max-width: 420px;
+  }
+
+  .footer__description {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    opacity: 0.82;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer__nav-title,
+  .footer__group-title {
+    font-family: var(--font-alt);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+    opacity: 0.9;
+  }
+
+  .footer__nav-list {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer__menu-link,
+  .footer__link,
+  .footer__contact .footer__link {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    transition: var(--transition-fast);
+    display: inline-flex;
+  }
+
+  .footer__menu-link:hover,
+  .footer__link:hover {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .footer__copyright-row {
+    max-width: var(--container-max);
+    margin: 1.75rem auto 0;
+    padding: 0 1rem;
+    border-top: 1px solid rgba(240, 236, 230, 0.1);
+    padding-top: 1.2rem;
   }
 
   .footer__copyright {
@@ -35,26 +119,29 @@ import footer from '@/data/footer.json';
     opacity: 0.7;
   }
 
-  .footer__links {
-    display: flex;
-    gap: 1.5rem;
-  }
+  @media (max-width: 900px) {
+    .footer__container {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
 
-  .footer__link {
-    font-size: 0.85rem;
-    opacity: 0.7;
-    transition: var(--transition-fast);
-  }
-
-  .footer__link:hover {
-    opacity: 1;
-    color: var(--color-accent);
+    .footer__contact {
+      align-items: flex-start;
+    }
   }
 
   @media (max-width: 768px) {
+    .footer {
+      padding: 2rem 0 1rem;
+    }
+
     .footer__container {
-      flex-direction: column;
-      text-align: center;
+      gap: 1.25rem;
+    }
+
+    .footer__description,
+    .footer__copyright-row {
+      text-align: left;
     }
   }
 </style>

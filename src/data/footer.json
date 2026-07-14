@@ -1,6 +1,14 @@
 {
-  "copyright": "© 2025 Kod3rd. All rights reserved.",
+  "copyright": "©2025 Todos los derechos reservados",
+  "description": "Transformamos ideas en soluciones digitales efectivas.\n\nNuestro propósito: ¡hacer crecer tu negocio con tecnología!.",
   "email": "koderd.44@gmail.com",
+  "phone": ["+1 (829) 868-2298", "+1 (809) 988-4985"],
   "instagram": "https://www.instagram.com/kod3rd?igsh=MnkzdWtrbGlucWxi",
-  "instagramHandle": "@kod3rd"
+  "instagramHandle": "@kod3rd",
+  "menu": [
+    { "label": "Inicio", "href": "#INICIO" },
+    { "label": "Servicios", "href": "#SERVICIOS" },
+    { "label": "Sobre nosotros", "href": "#SOBRE" },
+    { "label": "Contacto", "href": "#CONTACTO" }
+  ]
 }

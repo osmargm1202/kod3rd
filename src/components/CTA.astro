@@ -1,17 +1,51 @@
 ---
-
+import site from '@/data/site.json';
 ---
 
 <section class="cta animate-fade-in">
-  <div class="cta__container">
-    <div class="cta__hero">
-      <div class="cta__overlay"></div>
-      <div class="cta__content">
-        <p class="cta__intro">No lo pienses</p>
-        <h2 class="cta__heading">Creamos soluciones que hablan por ti</h2>
-        <p class="cta__subheading">Unimos creatividad + tecnología para transformar ideas</p>
+  <div class="cta__bg-wrap">
+    <div class="cta__container">
+      <div class="cta__hero">
+        <div class="cta__overlay"></div>
+        <div class="cta__content">
+          <p class="cta__intro">No lo pienses</p>
+          <h2 class="cta__heading">Creamos soluciones que hablan por ti</h2>
+          <p class="cta__subheading">Unimos creatividad + tecnología para transformar ideas</p>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="cta__follow">
+    <img
+      src="/assets/images/Codigo.webp"
+      alt="Kod3rd código"
+      class="cta__side-image"
+      loading="lazy"
+    />
+
+    <div class="cta__follow-panel">
+      <h3 class="cta__follow-title">SIGUENOS</h3>
+      <p class="cta__follow-text">
+        ¿Todavía no nos sigues en Instagram?<br /> Conoce nuestros proyectos más recientes y contáctanos
+        directamente!
+      </p>
+      <a
+        href={site.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn--primary cta__follow-button"
+      >
+        Follow
+      </a>
+    </div>
+
+    <img
+      src="/assets/images/Reunion.webp"
+      alt="Kod3rd reunión"
+      class="cta__side-image"
+      loading="lazy"
+    />
   </div>
 </section>
 
@@ -21,9 +55,12 @@
     background: var(--color-primary);
   }
 
-  .cta__container {
+  .cta__bg-wrap {
     max-width: var(--container-max);
     margin: 0 auto;
+  }
+
+  .cta__container {
     border: 1px solid var(--color-border);
     border-radius: 40px;
     overflow: hidden;
@@ -77,6 +114,68 @@
     letter-spacing: var(--text-body-ls);
   }
 
+  .cta__follow {
+    max-width: var(--container-max);
+    margin: 1.5rem auto 0;
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) minmax(280px, 1.4fr) minmax(180px, 1fr);
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  .cta__side-image {
+    width: 100%;
+    border-radius: 40px;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+  }
+
+  .cta__follow-panel {
+    background: var(--color-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 40px;
+    text-align: center;
+    padding: 56px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+
+  .cta__follow-title {
+    font-family: var(--font-primary);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0.8;
+  }
+
+  .cta__follow-text {
+    font-family: var(--font-primary);
+    font-size: var(--text-body-size);
+    line-height: 1.45;
+    opacity: 0.85;
+  }
+
+  .cta__follow-button {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1024px) {
+    .cta__follow {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 620px;
+    }
+
+    .cta__side-image {
+      max-width: 620px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+    }
+  }
+
   @media (max-width: 768px) {
     .cta {
       padding: 4rem 1rem;
@@ -88,6 +187,10 @@
 
     .cta__heading {
       font-size: 1.8rem;
+    }
+
+    .cta__follow-panel {
+      padding: 40px 20px;
     }
   }
 </style>
