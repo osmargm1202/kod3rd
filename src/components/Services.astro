@@ -12,8 +12,6 @@ import services from '@/data/services.json';
             src={service.image}
             alt={service.title}
             class="service-card__image"
-            width="80"
-            height="80"
             loading="lazy"
           />
           <h3 class="service-card__title">{service.title}</h3>
@@ -44,10 +42,11 @@ import services from '@/data/services.json';
   }
 
   .service-card__image {
-    margin: 0 auto 1.25rem;
-    border-radius: 0;
-    width: 80px;
-    height: 80px;
+    margin: 0 auto 1.5rem;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 1;
     object-fit: contain;
   }
 
