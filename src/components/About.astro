@@ -1,0 +1,108 @@
+---
+import about from '@/data/about.json';
+import values from '@/data/values.json';
+---
+
+<section id="SOBRE" class="section about">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__values-grid">
+        {values.slice(0, 2).map((value, i) => (
+          <div class={`about__value-card animate-slide-up delay-${(i * 200) + 200}`}>
+            <h3 class="about__value-title">{value.title}</h3>
+            <p class="about__value-text">{value.description}</p>
+          </div>
+        ))}
+      </div>
+      <div class="about__main animate-slide-up">
+        <h2 class="section__title">{about.heading}</h2>
+        <p class="about__intro">{about.intro}</p>
+        <p class="about__description">{about.description}</p>
+      </div>
+      <div class="about__values-grid">
+        {values.slice(2, 4).map((value, i) => (
+          <div class={`about__value-card animate-slide-up delay-${(i * 200) + 200}`}>
+            <h3 class="about__value-title">{value.title}</h3>
+            <p class="about__value-text">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--color-white);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .about__main {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .about__intro {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .about__description {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+
+  .about__values-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about__value-card {
+    background: var(--color-bg-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--color-accent);
+  }
+
+  .about__value-title {
+    font-family: var(--font-alt);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .about__value-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about__values-grid {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .about__value-card {
+      flex: 1 1 calc(50% - 0.75rem);
+    }
+  }
+</style>
