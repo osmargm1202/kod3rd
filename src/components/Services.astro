@@ -1,0 +1,83 @@
+---
+import services from '@/data/services.json';
+---
+
+<section id="SERVICIOS" class="section services">
+  <div class="container">
+    <h2 class="section__title animate-slide-up">SERVICIOS</h2>
+    <div class="services__grid">
+      {services.map((service, index) => (
+        <article class={`service-card animate-slide-up delay-${(index % 3) * 200 + 200}`}>
+          <img
+            src={service.image}
+            alt={service.title}
+            class="service-card__image"
+            width="80"
+            height="80"
+            loading="lazy"
+          />
+          <h3 class="service-card__title">{service.title}</h3>
+          <p class="service-card__description">{service.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--color-bg-light);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .service-card__image {
+    margin: 0 auto 1.25rem;
+    border-radius: 8px;
+  }
+
+  .service-card__title {
+    font-family: var(--font-alt);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-card__description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .services__grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
