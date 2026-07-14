@@ -1,0 +1,38 @@
+[
+  {
+    "id": "consultoria",
+    "title": "Consultoría tecnológica",
+    "description": "Te ayudamos a tomar decisiones correctas en tecnología para tu negocio.",
+    "image": "/assets/images/consultoria.png"
+  },
+  {
+    "id": "landing-page",
+    "title": "Diseños de landing page",
+    "description": "Hacemos páginas cómodas para mostrar y vender tus productos o servicios.",
+    "image": "/assets/images/landings.webp"
+  },
+  {
+    "id": "apps",
+    "title": "Aplicaciones móviles",
+    "description": "Creamos apps para que tus clientes puedan usar tu negocio desde el celular.",
+    "image": "/assets/images/moviles.webp"
+  },
+  {
+    "id": "web",
+    "title": "Páginas web",
+    "description": "Diseñamos tu página para que todos puedan conocer y confiar en tu negocio online.",
+    "image": "/assets/images/paginas-web.webp"
+  },
+  {
+    "id": "software",
+    "title": "Software personalizado",
+    "description": "Creamos sistemas a tu medida para hacer más fácil el manejo de tu negocio.",
+    "image": "/assets/images/servicios-personalizado.webp"
+  },
+  {
+    "id": "control",
+    "title": "Sistemas de control",
+    "description": "Te damos herramientas para llevar el control de ventas, inventario y más.",
+    "image": "/assets/images/sistemas-de-control.webp"
+  }
+]
