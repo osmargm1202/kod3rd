@@ -118,16 +118,19 @@ import site from '@/data/site.json';
     max-width: var(--container-max);
     margin: 1.5rem auto 0;
     display: grid;
-    grid-template-columns: minmax(180px, 1fr) minmax(280px, 1.4fr) minmax(180px, 1fr);
-    gap: 30px;
+    grid-template-columns: minmax(140px, 1fr) minmax(320px, 1.8fr) minmax(140px, 1fr);
+    gap: 24px;
     align-items: stretch;
   }
 
   .cta__side-image {
     width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
     border-radius: 40px;
     object-fit: cover;
     aspect-ratio: 1 / 1;
+    border: 1px solid var(--color-border);
   }
 
   .cta__follow-panel {
@@ -140,6 +143,7 @@ import site from '@/data/site.json';
     flex-direction: column;
     justify-content: center;
     gap: 1.2rem;
+    min-height: 100%;
   }
 
   .cta__follow-title {
@@ -172,7 +176,14 @@ import site from '@/data/site.json';
     .cta__side-image {
       max-width: 620px;
       margin: 0 auto;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 4 / 3;
+      width: min(100%, 420px);
+    }
+
+    .cta__follow-panel {
+      max-width: 620px;
+      margin: 0 auto;
+      min-height: auto;
     }
   }
 
@@ -189,8 +200,17 @@ import site from '@/data/site.json';
       font-size: 1.8rem;
     }
 
+    .cta__follow {
+      margin-top: 1rem;
+      gap: 16px;
+    }
+
     .cta__follow-panel {
-      padding: 40px 20px;
+      padding: 36px 16px;
+    }
+
+    .cta__follow-text {
+      font-size: 0.95rem;
     }
   }
 </style>
