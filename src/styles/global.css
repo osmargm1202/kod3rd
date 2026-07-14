@@ -44,6 +44,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
+  background-color: var(--color-secondary);
 }
 
 body {
@@ -82,6 +83,7 @@ ul {
 /* Section base */
 .section {
   padding: var(--section-padding);
+  background-color: var(--color-secondary);
 }
 
 .section__title {
@@ -126,6 +128,7 @@ ul {
 .btn--primary:hover {
   background: var(--color-text);
   color: var(--color-secondary);
+  border-color: var(--color-text);
 }
 
 .btn--secondary {
