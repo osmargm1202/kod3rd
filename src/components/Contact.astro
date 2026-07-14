@@ -10,8 +10,6 @@ import site from '@/data/site.json';
       <div class="contact__info">
         <a href={`mailto:${site.email}`} class="contact__link">{site.email}</a>
       </div>
-      <!-- Formspree placeholder -->
-      <div id="formspree-placeholder" class="contact__form-placeholder"></div>
     </div>
   </div>
 </section>
@@ -49,14 +47,5 @@ import site from '@/data/site.json';
     text-decoration: underline;
   }
 
-  .contact__form-placeholder {
-    min-height: 100px;
-    border: 2px dashed rgba(240, 236, 230, 0.2);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(240, 236, 230, 0.3);
-    font-size: 0.9rem;
-  }
+
 </style>
