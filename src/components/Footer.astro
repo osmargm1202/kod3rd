@@ -1,0 +1,59 @@
+---
+import footer from '@/data/footer.json';
+---
+
+<footer class="footer">
+  <div class="container footer__container">
+    <p class="footer__copyright">{footer.copyright}</p>
+    <div class="footer__links">
+      <a href={`mailto:${footer.email}`} class="footer__link">{footer.email}</a>
+      <a href={footer.instagram} target="_blank" rel="noopener noreferrer" class="footer__link">
+        {footer.instagramHandle}
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-dark);
+    color: var(--color-white);
+    padding: 2rem 0;
+  }
+
+  .footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer__copyright {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  .footer__links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer__link {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    transition: var(--transition-fast);
+  }
+
+  .footer__link:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .footer__container {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

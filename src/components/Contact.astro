@@ -1,0 +1,61 @@
+---
+import site from '@/data/site.json';
+---
+
+<section id="CONTACTO" class="section contact">
+  <div class="container">
+    <h2 class="section__title animate-slide-up">CONTACTO</h2>
+    <div class="contact__content animate-slide-up">
+      <p class="contact__text">Estamos listos para impulsar tu proyecto.</p>
+      <div class="contact__info">
+        <a href={`mailto:${site.email}`} class="contact__link">{site.email}</a>
+      </div>
+      <!-- Formspree placeholder: el código del formulario se agrega aquí después -->
+      <div id="formspree-placeholder" class="contact__form-placeholder"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--color-bg-light);
+    text-align: center;
+  }
+
+  .contact__content {
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+
+  .contact__text {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact__info {
+    margin-bottom: 2rem;
+  }
+
+  .contact__link {
+    font-family: var(--font-alt);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    transition: var(--transition-fast);
+  }
+
+  .contact__link:hover {
+    text-decoration: underline;
+  }
+
+  .contact__form-placeholder {
+    min-height: 100px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 0.9rem;
+  }
+</style>
