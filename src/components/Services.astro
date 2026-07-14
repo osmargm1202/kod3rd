@@ -9,13 +9,13 @@ import services from '@/data/services.json';
       {services.map((service, index) => (
         <article class={`service-card animate-slide-up delay-${(index % 3) * 200 + 200}`}>
           <h3 class="service-card__title">{service.title}</h3>
-          <p class="service-card__description">{service.description}</p>
           <img
             src={service.image}
             alt={service.title}
             class="service-card__image"
             loading="lazy"
           />
+          <p class="service-card__description">{service.description}</p>
         </article>
       ))}
     </div>
@@ -43,13 +43,13 @@ import services from '@/data/services.json';
 
   .service-card__title {
     font-family: var(--font-secondary);
-    font-size: clamp(1.3rem, 2.5vw, 2.4rem);
-    font-weight: 400;
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
+    font-weight: 700;
     color: var(--color-accent);
     text-transform: capitalize;
     letter-spacing: 1px;
     line-height: 1.05;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .service-card__description {
@@ -58,6 +58,7 @@ import services from '@/data/services.json';
     font-weight: 300;
     line-height: 1.45em;
     color: var(--color-service-desc);
+    margin-top: 0.75rem;
     margin-bottom: 1rem;
   }
 
