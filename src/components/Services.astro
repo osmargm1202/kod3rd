@@ -26,58 +26,72 @@ import services from '@/data/services.json';
 
 <style>
   .services {
-    background: var(--color-bg-light);
+    min-height: 100vh;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
   }
 
   .services__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 60px;
   }
 
   .service-card {
-    background: var(--color-white);
-    padding: 2rem;
-    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 0;
   }
 
   .service-card__image {
     margin: 0 auto 1.25rem;
-    border-radius: 8px;
+    border-radius: 0;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
   }
 
   .service-card__title {
-    font-family: var(--font-alt);
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--color-dark);
+    font-family: var(--font-secondary);
+    font-size: 3.75vw;
+    font-weight: 400;
+    color: var(--color-service-title);
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    line-height: 1em;
     margin-bottom: 0.75rem;
   }
 
   .service-card__description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--color-text);
+    font-family: var(--font-alt);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5em;
+    color: var(--color-service-desc);
   }
 
   @media (max-width: 768px) {
     .services__grid {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 2rem;
+    }
+
+    .service-card__title {
+      font-size: 1.8rem;
+    }
+
+    .service-card__description {
+      font-size: 16px;
     }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
     .services__grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-card__title {
+      font-size: 2.5vw;
     }
   }
 </style>

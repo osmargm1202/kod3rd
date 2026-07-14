@@ -6,7 +6,7 @@ import values from '@/data/values.json';
 <section id="SOBRE" class="section about">
   <div class="container">
     <div class="about__grid">
-      <div class="about__values-grid">
+      <div class="about__values-col">
         {values.slice(0, 2).map((value, i) => (
           <div class={`about__value-card animate-slide-up delay-${(i * 200) + 200}`}>
             <h3 class="about__value-title">{value.title}</h3>
@@ -19,7 +19,7 @@ import values from '@/data/values.json';
         <p class="about__intro">{about.intro}</p>
         <p class="about__description">{about.description}</p>
       </div>
-      <div class="about__values-grid">
+      <div class="about__values-col">
         {values.slice(2, 4).map((value, i) => (
           <div class={`about__value-card animate-slide-up delay-${(i * 200) + 200}`}>
             <h3 class="about__value-title">{value.title}</h3>
@@ -33,7 +33,7 @@ import values from '@/data/values.json';
 
 <style>
   .about {
-    background: var(--color-white);
+    background: var(--color-secondary);
   }
 
   .about__grid {
@@ -49,31 +49,32 @@ import values from '@/data/values.json';
   }
 
   .about__intro {
-    font-family: var(--font-heading);
+    font-family: var(--font-secondary);
     font-size: 1.5rem;
-    color: var(--color-dark);
+    color: var(--color-text);
     margin-bottom: 1.5rem;
     line-height: 1.4;
   }
 
   .about__description {
-    font-size: 1rem;
-    line-height: 1.8;
+    font-family: var(--font-primary);
+    font-size: var(--text-body-size);
+    font-weight: 400;
+    line-height: var(--text-body-lh);
+    letter-spacing: var(--text-body-ls);
     color: var(--color-text);
     max-width: var(--content-max);
     margin: 0 auto;
   }
 
-  .about__values-grid {
+  .about__values-col {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
 
   .about__value-card {
-    background: var(--color-bg-light);
     padding: 1.5rem;
-    border-radius: 8px;
     border-left: 3px solid var(--color-accent);
   }
 
@@ -81,14 +82,16 @@ import values from '@/data/values.json';
     font-family: var(--font-alt);
     font-size: 1.15rem;
     font-weight: 600;
-    color: var(--color-dark);
+    color: var(--color-accent);
     margin-bottom: 0.5rem;
   }
 
   .about__value-text {
+    font-family: var(--font-primary);
     font-size: 0.9rem;
     line-height: 1.6;
     color: var(--color-text);
+    opacity: 0.85;
   }
 
   @media (max-width: 768px) {
@@ -96,7 +99,7 @@ import values from '@/data/values.json';
       grid-template-columns: 1fr;
     }
 
-    .about__values-grid {
+    .about__values-col {
       flex-direction: row;
       flex-wrap: wrap;
     }
