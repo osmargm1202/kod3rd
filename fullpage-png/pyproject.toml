@@ -1,0 +1,11 @@
+[project]
+name = "fullpage-png"
+version = "0.1.0"
+description = "Minimal full-page PNG generator using Chromium"
+requires-python = ">=3.12"
+dependencies = [
+    "playwright>=1.50",
+]
+
+[project.scripts]
+fullpage-png = "main:main"

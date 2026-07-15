@@ -97,39 +97,56 @@ services:
 
 Con esto tienes dos vías de despliegue: NixOS service (9200) o contenedor Docker (9200).
 
-## Capturas para README en NixOS (sin Playwright)
+## Capturas para README (generador dedicado full-page)
 
-Causa del error típico: Chromium se estaba ejecutando sin URL o antes de que la app levantara, por eso guardaba su página inicial.
+Para evitar artefactos de la captura anterior, se agregó un generador dedicado:
+`fullpage-png/`.
 
-Usa el script:
+Estructura:
+
+- `fullpage-png/pyproject.toml`
+- `fullpage-png/main.py`
+
+Script recomendado (más simple):
 
 ```bash
-nix-shell -p nodejs_22 chromium --run "./scripts/screenshot.sh"
+# desktop
+./scripts/capture-fullpage.sh -u http://127.0.0.1:4321/ -o ./assets/readme/home-desktop.png -w 1600
+# tablet
+./scripts/capture-fullpage.sh -u http://127.0.0.1:4321/ -o ./assets/readme/home-tablet.png -w 1024
+# mobile
+./scripts/capture-fullpage.sh -u http://127.0.0.1:4321/ -o ./assets/readme/home-mobile.png -w 390
+```
+
+Ejecutarlo directo con uv (Nix):
+
+```bash
+# con uv disponible en PATH
+uv run --project ./fullpage-png main.py "http://127.0.0.1:4321/" --chromium "$(command -v chromium)" -o ./assets/readme/home-desktop.png --width 1600
+
+# sin uv global (usando nix)
+nix run nixpkgs#uv -- run --project ./fullpage-png main.py \
+  "http://127.0.0.1:4321/" \
+  --chromium "$(command -v chromium)" \
+  -o ./assets/readme/home-desktop.png \
+  --width 1600
 ```
 
 Opcionales:
 
-- Cambiar URL/puerto:
-  `SCREENSHOT_HOST=127.0.0.1 SCREENSHOT_PORT=4321 ./scripts/screenshot.sh`
-- Cambiar navegador:
-  `SCREENSHOT_CHROMIUM=chromium-browser ./scripts/screenshot.sh`
+- `--width 390` para mobile, `--width 1024` para tablet.
+- `--delay 1000` si necesitas esperar animaciones/recursos.
 
-El script:
-- levanta dev server si no detecta uno en `http://127.0.0.1:4321`,
-- espera a que responda,
-- y genera:
-  - `assets/readme/home-desktop.png`
-  - `assets/readme/home-tablet.png`
-  - `assets/readme/home-mobile.png`
+Comandos antiguos:
 
-Luego en el README:
+- `./scripts/screenshot.sh` sigue disponible para un flujo rápido en NixOS.
 
-```md
+Resultado en README:
+
 ![Desktop](./assets/readme/home-desktop.png)
-![Mobile](./assets/readme/home-mobile.png)
-```
 
-Si quieres mantener `assets/readme` fuera de git, agrega `.gitignore`: `assets/readme/*.png`.
+![Mobile](./assets/readme/home-mobile.png)
+
 
 ## Buenas prácticas Astro / JS en cliente
 

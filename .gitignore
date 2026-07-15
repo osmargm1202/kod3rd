@@ -2,4 +2,14 @@ node_modules/
 dist/
 .superpowers/
 wp-content/
+assets/readme/*
+!assets/readme/home-desktop.png
+!assets/readme/home-tablet.png
+!assets/readme/home-mobile.png
 wp-includes/
+
+# fullpage-png tool env/cache artifacts
+fullpage-png/.venv/
+fullpage-png/__pycache__/
+fullpage-png/assets/
+fullpage-png/uv.lock

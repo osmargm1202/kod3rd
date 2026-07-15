@@ -9,6 +9,10 @@ HOST="${SCREENSHOT_HOST:-127.0.0.1}"
 URL="http://${HOST}:${PORT}/"
 OUT_DIR="$ROOT_DIR/assets/readme"
 CHROMIUM_BIN="${SCREENSHOT_CHROMIUM:-chromium}"
+DESKTOP_HEIGHT="${SCREENSHOT_DESKTOP_HEIGHT:-14000}"
+TABLET_HEIGHT="${SCREENSHOT_TABLET_HEIGHT:-14000}"
+MOBILE_HEIGHT="${SCREENSHOT_MOBILE_HEIGHT:-14000}"
+USE_PLAYWRIGHT="${SCREENSHOT_USE_PLAYWRIGHT:-0}"
 
 mkdir -p "$OUT_DIR"
 
@@ -57,7 +61,7 @@ else
   echo "✅ Servidor ya activo en ${URL}, usando instancia existente"
 fi
 
-capture() {
+capture_chromium() {
   local label="$1"
   local w="$2"
   local h="$3"
@@ -67,17 +71,73 @@ capture() {
     --headless \
     --no-sandbox \
     --disable-gpu \
+    --disable-lcd-text \
+    --disable-font-subpixel-positioning \
     --hide-scrollbars \
     --window-size="${w},${h}" \
     --screenshot="$outfile" \
-    --virtual-time-budget=8000 \
+    --virtual-time-budget=9000 \
     "$URL"
 
   echo "🖼  Guardado: $outfile"
 }
 
-capture "home-desktop" 1600 2600
-capture "home-tablet"  1024 1800
-capture "home-mobile"  390  2600
+capture_playwright() {
+  local label="$1"
+  local w="$2"
+  local outfile="$OUT_DIR/${label}.png"
+
+  # 1) Prefer local fullpage-png tool (Python + Playwright) to force full-page real
+  local fullpage_project="$ROOT_DIR/fullpage-png"
+
+  if command -v uv >/dev/null 2>&1 && [ -f "$fullpage_project/pyproject.toml" ]; then
+    local chromium_arg=()
+
+    if command -v "$CHROMIUM_BIN" >/dev/null 2>&1; then
+      chromium_arg+=(--chromium "$CHROMIUM_BIN")
+    fi
+
+    if (cd "$fullpage_project" && uv run fullpage-png "$URL" --width "$w" --output "$outfile" "${chromium_arg[@]}"); then
+      echo "🖼  Guardado: $outfile"
+      return
+    fi
+  fi
+
+  # 2) Fallback to Playwright CLI
+  if command -v playwright >/dev/null 2>&1; then
+    if playwright screenshot "$URL" "$outfile" --full-page; then
+      echo "🖼  Guardado: $outfile"
+      return
+    fi
+  fi
+
+  if [ -n "${SCREENSHOT_PLAYWRIGHT_CLI:-}" ] && command -v npx >/dev/null 2>&1; then
+    if npx --yes playwright screenshot "$URL" "$outfile" --full-page; then
+      echo "🖼  Guardado: $outfile"
+      return
+    fi
+  fi
+
+  echo "⚠️  Playwright no está disponible; usando Chromium con height alto." >&2
+  return 1
+}
+
+capture() {
+  local label="$1"
+  local w="$2"
+  local h="$3"
+
+  if [ "$USE_PLAYWRIGHT" = "1" ]; then
+    if capture_playwright "$label" "$w"; then
+      return
+    fi
+  fi
+
+  capture_chromium "$label" "$w" "$h"
+}
+
+capture "home-desktop" 1600 "$DESKTOP_HEIGHT"
+capture "home-tablet"  1024 "$TABLET_HEIGHT"
+capture "home-mobile"  390  "$MOBILE_HEIGHT"
 
 echo "✅ Capturas completas en: $OUT_DIR"
