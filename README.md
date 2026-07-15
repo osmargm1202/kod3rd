@@ -1,8 +1,6 @@
 # Kod3rd Landing Page 🚀
 
-This repository contains the static version of the official **Kod3rd** landing page.  
-Originally built with **WordPress + Elementor**, and exported using **Simply Static**  
-for fast and lightweight deployment on **Netlify**.
+This repository contains the static Astro version of the official **Kod3rd** landing page, using local assets and JSON-driven content for fast, lightweight deployment.
 
 ---------------
 
@@ -43,10 +41,9 @@ We merge creativity, strategy, and code to build impactful digital products.
 
 ## ⚙️ Tech Stack
 
-- HTML, CSS, JS (exported static)
-- WordPress (Elementor builder)
-- Simply Static (export tool)
-- Netlify (hosting)
+- Astro
+- TypeScript, HTML, CSS, JS (static output)
+- GitHub Pages / Netlify compatible static build
 
 ---------------
 
