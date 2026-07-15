@@ -97,6 +97,22 @@ services:
 
 Con esto tienes dos vías de despliegue: NixOS service (9200) o contenedor Docker (9200).
 
+## Buenas prácticas Astro / JS en cliente
+
+Esta implementación se dejó deliberadamente sin scripts globales en layout:
+- Se eliminó `BaseLayout` script para Formspree.
+- Se quitó script de animaciones del cliente y se dejó animación CSS pura.
+- Se añadió formulario HTML puro en `/src/components/Contact.astro` (envío directo a Formspree por `POST`).
+
+Si en el futuro necesitas interacciones cliente (sin usar React), puedes cargar HTMX de forma local en el servidor:
+
+```bash
+mkdir -p public/vendor
+wget -O public/vendor/htmx.min.js https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js
+```
+
+Y usarlo con `defer` desde tu layout si es necesario.
+
 ### Variables de entorno
 
 El servicio acepta:

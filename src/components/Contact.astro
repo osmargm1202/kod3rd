@@ -36,6 +36,23 @@ const phoneNumbers = (site.phone ?? []).map((phone) => ({
           <a href={site.instagram} target="_blank" rel="noopener noreferrer" class="contact__link">Instagram</a>
         </div>
       </div>
+
+      <form
+        class="contact__form"
+        action="https://formspree.io/f/mojgvkrk"
+        method="POST"
+        aria-label="Formulario de contacto"
+      >
+        <label>
+          Email
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+        <label>
+          Mensaje
+          <textarea name="message" rows="4" required placeholder="Cuéntanos tu proyecto"></textarea>
+        </label>
+        <button type="submit" class="btn btn--secondary contact__form-submit">Enviar mensaje</button>
+      </form>
     </div>
   </div>
 </section>
@@ -96,6 +113,42 @@ const phoneNumbers = (site.phone ?? []).map((phone) => ({
     font-size: 1rem;
     line-height: 1.5;
     color: rgba(240, 236, 230, 0.85);
+  }
+
+  .contact__form {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+    max-width: 620px;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .contact__form label {
+    display: grid;
+    gap: 0.45rem;
+    font-size: 0.95rem;
+    color: rgba(240, 236, 230, 0.88);
+  }
+
+  .contact__form input,
+  .contact__form textarea {
+    width: 100%;
+    border: 1px solid rgba(240, 236, 230, 0.45);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-secondary);
+    padding: 0.8rem;
+    font: inherit;
+  }
+
+  .contact__form textarea {
+    resize: vertical;
+  }
+
+  .contact__form-submit {
+    justify-self: start;
+    margin-top: 0.25rem;
   }
 
   @media (max-width: 768px) {
