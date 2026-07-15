@@ -17,12 +17,14 @@ import site from '@/data/site.json';
   </div>
 
   <div class="cta__follow">
-    <img
-      src="/assets/images/Codigo.webp"
-      alt="Kod3rd código"
-      class="cta__side-image"
-      loading="lazy"
-    />
+    <div class="cta__image-frame">
+      <img
+        src="/assets/images/Codigo.webp"
+        alt="Kod3rd código"
+        class="cta__side-image"
+        loading="lazy"
+      />
+    </div>
 
     <div class="cta__follow-panel">
       <h3 class="cta__follow-title">SIGUENOS</h3>
@@ -40,12 +42,14 @@ import site from '@/data/site.json';
       </a>
     </div>
 
-    <img
-      src="/assets/images/Reunion.webp"
-      alt="Kod3rd reunión"
-      class="cta__side-image"
-      loading="lazy"
-    />
+    <div class="cta__image-frame">
+      <img
+        src="/assets/images/Reunion.webp"
+        alt="Kod3rd reunión"
+        class="cta__side-image"
+        loading="lazy"
+      />
+    </div>
   </div>
 </section>
 
@@ -123,14 +127,19 @@ import site from '@/data/site.json';
     align-items: stretch;
   }
 
-  .cta__side-image {
-    width: 100%;
+  .cta__image-frame {
     max-width: 280px;
     margin: 0 auto;
     border-radius: 40px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .cta__side-image {
+    width: 100%;
+    display: block;
     object-fit: cover;
     aspect-ratio: 1 / 1;
-    border: 1px solid var(--color-border);
   }
 
   .cta__follow-panel {
@@ -173,11 +182,14 @@ import site from '@/data/site.json';
       max-width: 620px;
     }
 
-    .cta__side-image {
+    .cta__image-frame {
       max-width: 620px;
-      margin: 0 auto;
-      aspect-ratio: 4 / 3;
       width: min(100%, 420px);
+    }
+
+    .cta__side-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
     }
 
     .cta__follow-panel {
