@@ -20,7 +20,7 @@ curl -L https://raw.githubusercontent.com/osmargm1202/kod3rd/main/kod3.nix \
 ### 2) O copiar desde este repositorio
 
 ```bash
-scp /home/osmarg/Code/Kod3rd-landing/kod3.nix root@TU_SERVIDOR:/etc/nixos/modules/kod3.nix
+scp /ruta/al/repositorio/kod3rd-landing/kod3.nix root@TU_SERVIDOR:/etc/nixos/modules/kod3.nix
 ```
 
 ### 3) Importar el módulo en tu host NixOS
@@ -48,6 +48,54 @@ services.kod3Landing = {
   # environmentFile = "/etc/nixos/kod3.env"; # opcional, para secretos
 };
 ```
+
+## Despliegue con Docker
+
+Opcional si prefieres no usar Nix para este servicio.
+
+### Dockerfile
+
+El `Dockerfile` ya deja la app construida (`dist/`) dentro de `nginx`:
+
+```bash
+# 1) Genera build de Astro primero
+npm ci
+npm run build
+
+# 2) Construye imagen
+# docker build -t kod3rd-landing .
+
+docker build -t kod3rd-landing .
+
+# 3) Levanta el contenedor
+# por defecto expone 80 dentro del contenedor
+docker run --rm -p 9200:80 kod3rd-landing
+```
+
+Acceso: `http://localhost:9200`
+
+### Docker Compose
+
+Puedes usar el `docker-compose.yml` incluido y ajustar puerto público con la asignación:
+
+```bash
+# editar docker-compose.yml -> "9200:80"
+# luego:
+docker compose up -d --build
+```
+
+Ejemplo básico de `docker-compose.yml`:
+
+```yaml
+services:
+  web:
+    build: .
+    ports:
+      - "9200:80"
+    restart: unless-stopped
+```
+
+Con esto tienes dos vías de despliegue: NixOS service (9200) o contenedor Docker (9200).
 
 ### Variables de entorno
 
