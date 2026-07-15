@@ -97,6 +97,40 @@ services:
 
 Con esto tienes dos vías de despliegue: NixOS service (9200) o contenedor Docker (9200).
 
+## Capturas para README en NixOS (sin Playwright)
+
+Causa del error típico: Chromium se estaba ejecutando sin URL o antes de que la app levantara, por eso guardaba su página inicial.
+
+Usa el script:
+
+```bash
+nix-shell -p nodejs_22 chromium --run "./scripts/screenshot.sh"
+```
+
+Opcionales:
+
+- Cambiar URL/puerto:
+  `SCREENSHOT_HOST=127.0.0.1 SCREENSHOT_PORT=4321 ./scripts/screenshot.sh`
+- Cambiar navegador:
+  `SCREENSHOT_CHROMIUM=chromium-browser ./scripts/screenshot.sh`
+
+El script:
+- levanta dev server si no detecta uno en `http://127.0.0.1:4321`,
+- espera a que responda,
+- y genera:
+  - `assets/readme/home-desktop.png`
+  - `assets/readme/home-tablet.png`
+  - `assets/readme/home-mobile.png`
+
+Luego en el README:
+
+```md
+![Desktop](./assets/readme/home-desktop.png)
+![Mobile](./assets/readme/home-mobile.png)
+```
+
+Si quieres mantener `assets/readme` fuera de git, agrega `.gitignore`: `assets/readme/*.png`.
+
 ## Buenas prácticas Astro / JS en cliente
 
 Esta implementación se dejó deliberadamente sin scripts globales en layout:
