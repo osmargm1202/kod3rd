@@ -137,9 +137,14 @@ const phoneNumbers = (site.phone ?? []).map((phone) => ({
     border: 1px solid rgba(240, 236, 230, 0.45);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.05);
-    color: var(--color-secondary);
+    color: rgba(240, 236, 230, 0.95);
     padding: 0.8rem;
     font: inherit;
+  }
+
+  .contact__form input::placeholder,
+  .contact__form textarea::placeholder {
+    color: rgba(240, 236, 230, 0.78);
   }
 
   .contact__form textarea {
